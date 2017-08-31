@@ -4,15 +4,11 @@ public class slotMachineGame{
 
 
 	public static void main(String[] args) {//runs the game once and asks the user if they want to play again
-		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
-		String[] scores = new String[5]; // Array for storing scores 
-		for(int i = 0; i < scores.length; i ++) { // Sets each element of the array to loss by default
-			scores[i] = " Loss";
-		}
+		String[] scores = new String[10]; // Array for storing scores 
 		int wins = 0;
 		int jackpots = 0;
-		for(int i = 0; i < 5; i ++) {
+		for(int i = 0; i < 10; i ++) { //stores outcome of the round
 			switch(playOneRound()) {
 			case 1: scores[i] = " Win";
 			wins ++;
@@ -20,13 +16,16 @@ public class slotMachineGame{
 			case 2: scores[i] = " Jackpot";
 			jackpots ++;
 			break;
+			default: scores [i] = " Loss";
+			break;
 			}
 			boolean validChoice = false;
 			do { 
 				System.out.println("Play Again? (y/n)"); // prompts for user input and checks 
 				String temp = in.next();
 				if (temp.equals("n")) {
-					break;
+					i += 11;
+					validChoice = true;
 				}
 				else if(temp.equals("y")){
 					validChoice = true;
@@ -68,7 +67,7 @@ public class slotMachineGame{
 	}
 	public static void printScores(String[] array) { // prints the final score sheet
 		for(int i = 0; i < array.length; i ++) {
-			System.out.println("Round " + (i + 1) + ":" + array[i]);
+			if(array[i] != null) System.out.println("Round " + (i + 1) + ":" + array[i]);
 		}
 	}
 }
