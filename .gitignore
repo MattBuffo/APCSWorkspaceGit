@@ -53,3 +53,5 @@
 *.png
 APCSProject/bin/rockPaperScissors.class
 APCSProject/src/rockPaperScissors.java
+/.metadata/
+/.recommenders/
