@@ -27,23 +27,24 @@ public class zipCodeProject {
 		File ZipCodes = new File("ZipCodes.txt");
 		File ZipCodesCity = new File("ZipCodesCity.txt");
 		File ZipBarCodes = new File("ZipBarCodes.txt");
-		String[] zipCodesArray = fillFromSpaceSeperated(ZipCodes, determineSize(ZipBarCodes));
-		String[] zipBarCodesArray = fillFromSpaceSeperated(ZipBarCodes, determineSize(ZipBarCodes));
-		String[] zipCodesCityArray = fillFromSpaceSeperated(ZipCodesCity, determineSize(ZipCodesCity));
+		String[] zipBarCodesArray = fillFromLineSeperated(ZipBarCodes, determineSize(ZipBarCodes));
+		String[] zipCodesCityArray = fillFromLineSeperated(ZipCodesCity, determineSize(ZipCodesCity));
+		String[] zipCodesArray = fillFromLineSeperated(ZipCodes, determineSize(ZipBarCodes));
+		System.out.println(charToInt('0'));
 	}
-	/** Determines the amount of space separated strings in a text file
+	/** Determines the amount of line separated strings in a text file
 	 * 
 	 * @param file
 	 * 			a text file
 	 * @return
-	 * 			the number of space separated strings in the file
+	 * 			the number of space line seperated strings in the file
 	 * @throws FileNotFoundException
 	 */
 	public static int determineSize(File file) throws FileNotFoundException {
 		Scanner scan = new Scanner(file);
 		int size = 0;
-		while(scan.hasNext()) {
-			scan.next();
+		while(scan.hasNextLine()) {
+			scan.nextLine();
 			size ++;
 		}
 		return size;
@@ -53,15 +54,18 @@ public class zipCodeProject {
 	 * @param file
 	 * 			A text file
 	 * @param size
-	 * 			The ammount of space seperated strings in the file 
-	 * @return Array of each space seperated string in the file
+	 * 			The ammount of line seperated strings in the file 
+	 * @return Array of each line seperated string in the file
 	 * @throws FileNotFoundException
 	 */
-	public static String[] fillFromSpaceSeperated(File file, int size) throws FileNotFoundException{
+	public static String[] fillFromLineSeperated(File file, int size) throws FileNotFoundException{
 		Scanner fill = new Scanner(file);
 		String[] array = new String[size];
+		System.out.println();
+		System.out.println(size);
+		System.out.println();
 		for(int i = 0; i < size; i++) {
-			array[i] = fill.next();
+			if()
 		}
 		return array;
 	}
@@ -105,5 +109,38 @@ public class zipCodeProject {
 			return "ERROR";
 		}
 	}
-	public static zipToBarCode()
+	/**Converts a zip code to an array of barcode segments without framing bars
+	 * 
+	 * @param zip
+	 * 			a zip code string assumed to be composed of 
+	 * @param barcodeSegments
+	 * @return
+	 */
+	public static String[] zipToBarCode(String zip, String[]barcodeSegments) {
+		String[] bar = new String[zip.length()];
+		for(int i = 0; i < zip.length(); i++) {
+			// char does not cast to int well
+		}
+		return bar; 
+	}
+	/**
+	 * Converts a character variable that is assumed to be a digit to a integer 
+	 * @param c a character variable containing the a single integer digit value
+	 * @return the corresponding digit, -1 if not a digit
+	 */
+	public static int charToInt(char c) {
+		switch(c) {
+		case  '0': return 0;
+		case  '1': return 1;
+		case  '2': return 2;
+		case  '3': return 3;
+		case  '4': return 4;
+		case  '5': return 5;
+		case  '6': return 6;
+		case  '7': return 7;
+		case  '8': return 8;
+		case  '9': return 9;
+		default: return -1;
+		}
+	}
 }
