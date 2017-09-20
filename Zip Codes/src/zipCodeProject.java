@@ -29,10 +29,17 @@ public class zipCodeProject {
 		File ZipBarCodes = new File("ZipBarCodes.txt");
 		String[] zipBarCodesArray = fillFromLineSeperated(ZipBarCodes, determineSize(ZipBarCodes));
 		String[] zipCodesCityArray = fillFromLineSeperated(ZipCodesCity, determineSize(ZipCodesCity));
-		String[] zipCodesArray = fillFromLineSeperated(ZipCodes, determineSize(ZipBarCodes));
-		System.out.println(charToInt('0'));
+		String[] zipCodesArray = fillFromLineSeperated(ZipCodes, determineSize(ZipCodes));
+		System.out.println("Part One: Conversion from zip codes to BarCodes");
+		/* for(String code : zipCodesArray) {
+			String[] bar = zipToBarCode(code, barcodeSegments);
+			System.out.print("|");
+			for(String segment : bar) {
+				System.out.print(segment + " ");
+			}
+		} */
 	}
-	/** Determines the amount of line separated strings in a text file
+	/** Determines the amount of non null line separated strings in a text file
 	 * 
 	 * @param file
 	 * 			a text file
@@ -44,9 +51,9 @@ public class zipCodeProject {
 		Scanner scan = new Scanner(file);
 		int size = 0;
 		while(scan.hasNextLine()) {
-			scan.nextLine();
 			size ++;
 		}
+		System.out.println(size);
 		return size;
 	}
 	/**
@@ -61,11 +68,11 @@ public class zipCodeProject {
 	public static String[] fillFromLineSeperated(File file, int size) throws FileNotFoundException{
 		Scanner fill = new Scanner(file);
 		String[] array = new String[size];
-		System.out.println();
-		System.out.println(size);
-		System.out.println();
 		for(int i = 0; i < size; i++) {
-			if()
+			if(fill.hasNextLine()) {	
+				array[i] = fill.nextLine(); 
+				
+			}
 		}
 		return array;
 	}
@@ -119,7 +126,7 @@ public class zipCodeProject {
 	public static String[] zipToBarCode(String zip, String[]barcodeSegments) {
 		String[] bar = new String[zip.length()];
 		for(int i = 0; i < zip.length(); i++) {
-			// char does not cast to int well
+			bar[i] = barcodeSegments[charToInt(zip.charAt(i))];
 		}
 		return bar; 
 	}
