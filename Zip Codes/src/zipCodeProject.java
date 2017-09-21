@@ -29,31 +29,67 @@ public class zipCodeProject {
 		File ZipBarCodes = new File("ZipBarCodes.txt");
 		
 		
-		String[] zipBarCodesArray = fillFromLineSeperated(ZipBarCodes, determineSize(ZipBarCodes));
-		String[] zipCodesCityArray = fillFromLineSeperated(ZipCodesCity, determineSize(ZipCodesCity));
+		String[] zipBarCodesArray = fillFromLineSeperated(ZipBarCodes, determineSize(ZipBarCodes)); //Initializes arrays containing all line separated strings in each file
 		String[] zipCodesArray = fillFromLineSeperated(ZipCodes, determineSize(ZipCodes));
 		
-		System.out.println("Part One: Conversion from Zip codes to Bar Codes");
+		
+		System.out.println("Part One: Conversion from Zip codes to Bar Codes\n");
 		for(int i = 0; i < zipCodesArray.length; i++) {
 			String[] bar = zipToBarCode(zipCodesArray[i], barcodeSegments);
-			System.out.println("Zip Code Number " + (i+1));
-			System.out.print("Readable Barcode: ");
+			findCity(ZipCodesCity, zipCodesArray[i], true);
+			System.out.print("\t\tReadable Barcode: "); // formatted to match sample
 			System.out.print("| ");
-			for(String segment : bar) {
+			for(String segment : bar) { //for each loops included as I used them briefly in ECS 2 and thus they are old concepts
 				System.out.print(segment + " ");
 			}
 			System.out.println("|");
 			
-			System.out.print("Condensed Barcode: ");
+			System.out.print("\t\tPostal Barcode: ");
 			System.out.print("|");
 			for(String segment : bar) {
 				System.out.print(segment + "");
 			}
-			System.out.println("|");
-			System.out.println();
+			System.out.println("|\n");
+			
 			
 		}
-		barCodeToArray("||:|:::||::||:::::||:|:|::::||:|");
+		
+		
+		System.out.println("Part Three: Conversion from Barcodes to Zipcodes\n");
+	}
+	/** Checks to see if the checksum digit plus the other five digits in a zipcode divides by 10 without a remainder
+	 * 
+	 * @param code 
+	 * @return
+	 */
+	public static boolean checkSum(int[] code) {
+		int sum = 0;
+		for(int i: code) {
+			sum += i;
+		}
+		if(sum%10 == 0) {
+			return true;
+		}
+		else return false;
+	}
+	/**Finds and prints the matching cities for a given zipcode
+	 * 
+	 * @param file assumed to be zipCodesCity.txt, file of all cities and their respective zip codes
+	 * @param zipCode the zipcode to be searched for
+	 *  
+	 */
+	public static void findCity(File file, String zipCode, boolean printZipCode)throws FileNotFoundException {
+		Scanner cityScan = new Scanner(file); // scanner for zipcodes file
+		while(cityScan.hasNextLine()){ //finds matching cities and prints the results for each barcode
+			String[] city = cityScan.nextLine().split(",");
+			if(zipCode.equals(city[0])) {
+				if(printZipCode) {
+					System.out.print(zipCode + "   " );
+				}
+				System.out.println(city[1] + "\t" + city[2]);
+			}
+		}
+		cityScan.close();
 	}
 	/** Determines the amount of non null line separated strings in a text file
 	 * 
@@ -124,13 +160,12 @@ public class zipCodeProject {
 	}
 	/**Converts a barcode segment to integer
 	 * 
-	 * @param 5 Character barcode segment
+	 * @param 5 Character barcode segment, assumed to be valid
 	 * 
-	 * @return Integer value matching barcode or -10 if none is found
+	 * @return Integer value matching barcode segment 
 	 * 
 	 */
 	public static int segmentToInt(String segment){
-		 System.out.println(segment.charAt(0));
 		 return 1;
 	}
 	/**Converts a integer to barcode segment
@@ -155,14 +190,21 @@ public class zipCodeProject {
 	 * @param barcodeSegments
 	 * @return
 	 */
-	public static String[] zipToBarCode(String zip, String[]barcodeSegments) {
-		String[] bar = new String[zip.length()];
+	public static String[] zipToBarCode(String zip, String[] barcodeSegments) {
+		String[] bar = new String[zip.length() + 1];
+		int sum = 0;
+		for(int i = 0; i < zip.length(); i++) {
+			sum += charToInt(zip.charAt(i));
+			
+		}
+		if(sum%10>0) zip += (10 - sum%10); // finds checksum by adding all numbers up and finding the digit needed to evenly divide by 10
+		else zip += 0;
 		for(int i = 0; i < zip.length(); i++) {
 			bar[i] = barcodeSegments[charToInt(zip.charAt(i))];
-		}
+		} 
+		 
 		return bar; 
 	}
-
 	/**
 	 * Converts a character variable that is assumed to be a digit to a integer 
 	 * @param c a character variable containing the a single integer digit value
