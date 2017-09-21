@@ -27,17 +27,33 @@ public class zipCodeProject {
 		File ZipCodes = new File("ZipCodes.txt");
 		File ZipCodesCity = new File("ZipCodesCity.txt");
 		File ZipBarCodes = new File("ZipBarCodes.txt");
+		
+		
 		String[] zipBarCodesArray = fillFromLineSeperated(ZipBarCodes, determineSize(ZipBarCodes));
 		String[] zipCodesCityArray = fillFromLineSeperated(ZipCodesCity, determineSize(ZipCodesCity));
 		String[] zipCodesArray = fillFromLineSeperated(ZipCodes, determineSize(ZipCodes));
-		System.out.println("Part One: Conversion from zip codes to BarCodes");
-		/* for(String code : zipCodesArray) {
-			String[] bar = zipToBarCode(code, barcodeSegments);
-			System.out.print("|");
+		
+		System.out.println("Part One: Conversion from Zip codes to Bar Codes");
+		for(int i = 0; i < zipCodesArray.length; i++) {
+			String[] bar = zipToBarCode(zipCodesArray[i], barcodeSegments);
+			System.out.println("Zip Code Number " + (i+1));
+			System.out.print("Readable Barcode: ");
+			System.out.print("| ");
 			for(String segment : bar) {
 				System.out.print(segment + " ");
 			}
-		} */
+			System.out.println("|");
+			
+			System.out.print("Condensed Barcode: ");
+			System.out.print("|");
+			for(String segment : bar) {
+				System.out.print(segment + "");
+			}
+			System.out.println("|");
+			System.out.println();
+			
+		}
+		barCodeToArray("||:|:::||::||:::::||:|:|::::||:|");
 	}
 	/** Determines the amount of non null line separated strings in a text file
 	 * 
@@ -51,9 +67,10 @@ public class zipCodeProject {
 		Scanner scan = new Scanner(file);
 		int size = 0;
 		while(scan.hasNextLine()) {
+			scan.nextLine();
 			size ++;
 		}
-		System.out.println(size);
+		scan.close();
 		return size;
 	}
 	/**
@@ -74,6 +91,7 @@ public class zipCodeProject {
 				
 			}
 		}
+		fill.close();
 		return array;
 	}
 	/** Converts a single bar of a barcode segment to a zero or one
@@ -89,6 +107,20 @@ public class zipCodeProject {
 		else {
 			return 0;
 		}
+	}
+	/** Converts a barcode to an array of segments
+	 * 
+	 * @param code a 32 character barcode
+	 * @return array of supplied code split into 5 character elements with the first and last characters removed
+	 */
+	public static String[] barCodeToArray(String code) {
+		String[] array = new String[6]; //6 character zip code
+		code = code.substring(1, (code.length())-1); //removes front and end bracing bar
+		for(int i = 0; i < 6; i ++) {
+			array[i] = code.substring((5*i),(5*i) + 5);
+			
+		}
+		return array;
 	}
 	/**Converts a barcode segment to integer
 	 * 
@@ -130,6 +162,7 @@ public class zipCodeProject {
 		}
 		return bar; 
 	}
+
 	/**
 	 * Converts a character variable that is assumed to be a digit to a integer 
 	 * @param c a character variable containing the a single integer digit value
