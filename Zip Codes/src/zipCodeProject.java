@@ -34,7 +34,7 @@ public class zipCodeProject {
 		String[] zipCodesArray = fillFromLineSeperated(ZipCodes, determineSize(ZipCodes));
 
 
-		System.out.println("Part One: Conversion from Zip codes to Bar Codes\n");
+		System.out.println("Part One and Two: Conversion from Zip codes to Bar Codes\n");
 		for(int i = 0; i < zipCodesArray.length; i++) {
 			String[] bar = zipToBarCode(zipCodesArray[i], barcodeSegments);
 			findCity(ZipCodesCity, zipCodesArray[i], true);
