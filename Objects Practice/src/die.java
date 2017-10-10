@@ -13,15 +13,15 @@ public class die {
 	 * @param faces number of sides on desired die 
 	 */
 	public die(int faces) {
-		face = roll();
 		sides = faces;
+		face = roll();
 	}
 	/**
 	 * Constructor that rolls dice with six sides, noargs constructor
 	 */
 	public die() { //constructor
-		face = roll();
 		sides = 6;
+		face = roll();
 	}
 	/** Sets face to an integer between 1 and 6 inclusive and returns that integer
 	 * 
