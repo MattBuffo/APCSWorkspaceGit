@@ -1,9 +1,9 @@
 import java.util.Scanner;
 public class PIGgame {
+	die die1 = new die();
+	die die2 = new die();
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		die die1 = new die();
-		die die2 = new die();
 		
 		System.out.println("Do you want to play a game? (y/n)"); //ask player if they actually want to play
 		String responce = in.next();
@@ -25,11 +25,7 @@ public class PIGgame {
 				}
 				else players[i] = new player(true);
 			}
-			while(winner(players) < 0) {
-				for(player currentPlayer : players) {
-					
-				}
-			}
+			
 			System.out.println("Ok, Bye!");
 		}
 
@@ -43,5 +39,28 @@ public class PIGgame {
 		}
 		return -1;
 	}
-
+	private static int playGame(player[] players, Scanner in) {
+		while(winner(players) < 0) {
+			for(player currentPlayer: players) {
+				boolean passTurn = false;
+				System.out.println("Pass the turn? (y/n)");
+				String responce = "";
+				while(!(responce.equals("y")) && !(responce.equals("n"))) {
+					System.out.println("Sorry, I diddn't get that, please type 'y' or 'n'");
+						responce = in.next();
+						
+					}
+				
+			}
+		}
+		return winner(players);
+	}
+	private static yesNo(Scanner in) {
+		String 
+		while(!(responce.equals("y")) && !(responce.equals("n"))) {
+			System.out.println("Sorry, I diddn't get that, please type 'y' or 'n'");
+				responce = in.next();
+				
+			}
+	}
 }
