@@ -55,12 +55,14 @@ public class PIGgame {
 		}
 		return winner(players);
 	}
-	private static yesNo(Scanner in) {
-		String 
+	private static boolean yesNo(Scanner in) {
+		String responce = in.next();
 		while(!(responce.equals("y")) && !(responce.equals("n"))) {
 			System.out.println("Sorry, I diddn't get that, please type 'y' or 'n'");
 				responce = in.next();
 				
 			}
+		if (responce.equals("y")) return true;
+		else return false;
 	}
 }
