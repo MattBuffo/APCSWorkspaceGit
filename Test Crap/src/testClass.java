@@ -1,9 +1,7 @@
 
 public class testClass {
 	public static void main(String[] args) {
-		System.out.println((int)(0.0*16+15));
-		String hi = "";
-		hi += "hi";
-		System.out.println(hi);
+		Dictionary dick = new Dictionary(1000,3000);
+		System.out.println(dick);
 	}
 }
