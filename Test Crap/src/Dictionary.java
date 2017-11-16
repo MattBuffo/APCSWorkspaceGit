@@ -5,7 +5,18 @@ public class Dictionary extends Book{
 		super(numPages);
 		definitions = numDefinitions;
 	}
+	public int getDefinitions() {
+		return definitions;
+	}
 	public String toString() {
-		return super.toString() + " " + definitions + " definitions"; 
+		return super.getPages() + " " + definitions + " definitions"; 
+	}
+	public boolean equals(Dictionary d) {
+		if(pages == d.getPages() && definitions == d.getDefinitions()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
