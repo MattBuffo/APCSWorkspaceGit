@@ -1,8 +1,8 @@
 
 public class Epic extends Novel {
 	int numBooks;
-	public Epic(int pages, int chapters, int books) {
-		super(pages,chapters);
+	public Epic(String name, int pages, int chapters, int books) {
+		super(name, pages,chapters);
 		numBooks = books;
 	}
 	public int getBooks(){
