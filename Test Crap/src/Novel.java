@@ -12,8 +12,8 @@ public class Novel extends Book implements Comparable<Novel> {
 	public String toString() {
 		return chapters +" Chapters " + super.getPages() + " Pages ";
 	}
-	public boolean equals(Novel n) {
-		if(this.toString().equals(n.toString())) return true;
+	public boolean equal(Book b) {
+		if(this.toString().equals(b.toString())) return true;
 		else return false;
 	}
 	public int compareTo(Novel n) {
