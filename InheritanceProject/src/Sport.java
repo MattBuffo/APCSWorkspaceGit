@@ -10,7 +10,7 @@ public class Sport extends Car{
 		super.changeLocation(location);
 		System.out.println("You drove" + miles + " miles to " + location + ",");
 		double temp = Math.random();
-		if(temp > 0.98) {
+		if(temp > super.breakDownChance) {
 			this.breakDown();
 			System.out.println("your car broke down on the way but you had fun regardless.");
 		}

@@ -1,6 +1,7 @@
 
 public class Twingo extends Economy{
 	String Condtion;
+	
 	public Twingo(String location, int mileage, int topSpeed, String Condition) {
 		super("Renault", location, mileage, topSpeed);
 		this.Condtion = Condition;

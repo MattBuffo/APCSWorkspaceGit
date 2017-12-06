@@ -1,5 +1,5 @@
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Comparable<Vehicle>{
 	String brand;
 	String location;
 	int mileage;
@@ -38,5 +38,11 @@ public abstract class Vehicle {
 	}
 	public static String compareVehicle(Vehicle v1, Vehicle v2) {
 		return "TODO";
+	}
+	public int compareTo(Vehicle v1) {
+		return this.toString().compareTo(v1.toString());
+	}
+	public boolean equals(Vehicle v1) {
+		return this.toString().equals(v1.toString());
 	}
 }

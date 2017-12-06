@@ -1,6 +1,7 @@
 
 public class Car extends Vehicle implements Driveable{
 	int topSpeed;
+	final double breakDownChance = 0.95;
 	public Car(String brand, String location, int mileage, int topSpeed) {
 		super(brand, location, mileage);
 		this.topSpeed = topSpeed;
@@ -19,7 +20,7 @@ public class Car extends Vehicle implements Driveable{
 		super.changeLocation(location);
 		System.out.println("You drove" + miles + " miles to " + location + ",");
 		double temp = Math.random();
-		if(temp > 0.95) {
+		if(temp > breakDownChance) {
 			this.breakDown();
 			System.out.println("your car broke down on the way.");
 		}
