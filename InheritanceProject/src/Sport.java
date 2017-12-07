@@ -7,7 +7,7 @@ public class Sport extends Car{
 	}
 	public void drive(String location, int miles) {
 		super.addMiles(miles);
-		super.changeLocation(location);
+		super.setLocation(location);
 		System.out.println("You drove" + miles + " miles to " + location + ",");
 		double temp = Math.random();
 		if(temp > super.breakDownChance) {

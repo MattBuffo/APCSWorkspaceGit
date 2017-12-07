@@ -1,11 +1,22 @@
 
 public class Car extends Vehicle implements Driveable{
-	int topSpeed;
+	private int topSpeed;
 	final double breakDownChance = 0.95;
+	/**
+	 * Constructs a new Car object with stored brand, location, mileage, and top speed
+	 * @param brand brand of car
+	 * @param location current location of car
+	 * @param mileage number of miles on the odometer
+	 * @param topSpeed top speed of the vehicle
+	 */
 	public Car(String brand, String location, int mileage, int topSpeed) {
 		super(brand, location, mileage);
 		this.topSpeed = topSpeed;
 	}
+	/**
+	 * Inspects a vehicle and returns all discernable information about that vehicle
+	 * @return String that represents a multi-line statement about the state of a vehicle
+	 */
 	public String inspect(){
 		String temp = "Vehicle: ";
 		temp += super.getBrand() + " ";
@@ -15,10 +26,16 @@ public class Car extends Vehicle implements Driveable{
 		temp += "Top Speed: " + this.topSpeed + "\n";
 		return temp;
 	}
+	/**
+	 * Attempts to drive the vehicle to a given location a given number of miles
+	 * @param location Place with which to update the superclass location variable
+	 * @param miles Amount of miles to add to the virtual odometer represented by the superclass variable mileage.
+	 */
 	public void drive(String location, int miles) {
 		super.addMiles(miles);
-		super.changeLocation(location);
+		super.setLocation(location);
 		System.out.println("You drove" + miles + " miles to " + location + ",");
+		//Implements a random breakdown mechanic based on a class constant
 		double temp = Math.random();
 		if(temp > breakDownChance) {
 			this.breakDown();
