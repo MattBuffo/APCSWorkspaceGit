@@ -55,9 +55,11 @@ public class PictureTester
     * method in Java */
   public static void main(String[] args)
   {
+	DigitalPicture p = new SimplePicture();
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
+	Picture p = new SimplePicture();
     testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();

@@ -114,7 +114,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
    */
   public void changeToBaseOne()
   {
-    numberBase=1;
+    numberBase=1;  
   }
   
   /**

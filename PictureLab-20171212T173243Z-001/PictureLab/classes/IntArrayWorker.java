@@ -10,7 +10,35 @@ public class IntArrayWorker
   {
     matrix = theMatrix;
   }
-  
+  public int getCount(int check) {
+	  int count = 0;
+	  for(int[] rowThing : matrix) {
+		  for(int item: rowThing) {
+			  if(item == check) {
+				  count ++;
+			  }
+		  }
+	  }
+	  return count;
+  }
+  public int getLargest() {
+	  int largest = Integer.MIN_VALUE;
+	  for(int[] rowArray: matrix) {
+		  for(int item : rowArray) {
+			  if(item > largest) {
+				  largest = item;
+			  }
+		  }
+	  }
+	  return largest;
+  }
+  public int getColTotal(int col) {
+	  int total = 0;
+	  for(int row[] : matrix) {
+		  total += row[col];
+	  }
+	  return total;
+  }
   /**
    * Method to return the total 
    * @return the total of the values in the array
