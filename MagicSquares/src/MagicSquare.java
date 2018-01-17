@@ -1,18 +1,30 @@
 
 public class MagicSquare {
 	private int[][] square;
+	/**
+	 * Noargs Constructor
+	 * 
+	 * Constructs a 3x3 Magic Square
+	 */
 	public MagicSquare() {
-	
+		this(3);
 	}
+	/**
+	 * 
+	 * @param size
+	 */
 	public MagicSquare(int size) {
+		if(size < 3) {
+			size = 3;
+		}
+		else if(size%2 == 0){
+			size = size +1;
+		}
 		square = new int[size][size];
 		fillSquare();
-		for(int[] array: square) {
-			for(int i: array) {
-				System.out.println(i);
-			}
-		}
+		
 	}
+	
 	private void fillSquare() {
 		int size = square.length;
 		int x = size /2; //x coordinate of the array, starts in the middle
@@ -37,5 +49,30 @@ public class MagicSquare {
 				
 			}
 		}
+	}
+	/**Gets the magic sum of a magic square
+	 * 
+	 * @return sum determined by the formula for finding the magic constant 
+	 */
+	public int getSum() {
+		int n = (square.length);
+		return (n * ((n*n) +1))/2;
+	}
+	/** After square is initialized, returns the side length of the square
+	 * 
+	 * @return the size of the square
+	 */
+	public int getSize() {
+		return square.length;
+	}
+	public String toString() {
+		String temp = "";
+		for(int[] array: square) {
+			for(int i: array) {
+				temp += i + "/t";
+			}
+			temp += "/n";  
+		}
+		return temp;
 	}
 }
