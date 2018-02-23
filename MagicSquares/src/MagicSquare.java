@@ -1,6 +1,11 @@
-
+/**
+ * 
+ * @author Matt Buffo
+ * Simulates a magic square, a form of mathematical puzzle using a 2D array of integers
+ *
+ */
 public class MagicSquare {
-	private int[][] square;
+	private int[][] square; //simulated magic square 
 	/**
 	 * Noargs Constructor
 	 * 
@@ -28,6 +33,7 @@ public class MagicSquare {
 	}
 	/**
 	 * Fills an odd-number-sided magic square with numbers, square must have already been initialized to an array with congruent odd dimensions
+	 * Postcondition: Magic square filled according to given algorithm
 	 */
 	private void fillSquare() {
 		int size = square.length;
@@ -51,7 +57,7 @@ public class MagicSquare {
 			else if(square[yval][xval] == 0) {
 				square[yval][xval] = number;
 				number ++;
-				yval--;
+				yval --;
 				xval++;			
 			}
 			else {
@@ -62,7 +68,7 @@ public class MagicSquare {
 	}
 	/**Gets the magic sum of a filled magic square
 	 * 
-	 * @return sum determined by the formula for finding the magic constant 
+	 * @return sum determined by the formula for finding the magic constant as found on totally reputable internet source (unnamed)
 	 */
 	public int getSum() {
 		int n = (square.length);
