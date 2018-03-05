@@ -87,47 +87,43 @@ public abstract class sort {
 			partition(array,middle + 1,end);
 			merge(array,start,middle,end);
 		}
-		
 	}
 	public static void merge(int[] array, int start, int middle, int end) {
 		
-		int[] tempArray = new int[end - start + 1];
+		int[] tmp = new int[end - start + 1];
 	
 		int lower = start;
 		int upper = middle + 1;
-		
 		int tempArrayIndex = 0;
-		while(lower <= middle && middle <= end) {
+		
+		while(lower <= middle && upper <= end) {
 			if(array[lower] < array[upper]) {
-				
-				tempArray[tempArrayIndex] = array[lower];
+				tmp[tempArrayIndex] = array[lower];
 				lower ++;
 				
 			}
 			else {
-				tempArray[tempArrayIndex] = array[upper];
+				tmp[tempArrayIndex] = array[upper];
 				
 				upper ++;
 				
 			}
-			System.out.println(tempArrayIndex);
-			System.out.println(tempArray[tempArrayIndex]);
 			tempArrayIndex ++;
 			
 			
 		}
 		while(lower <= middle) {
-			tempArray[tempArrayIndex] = array[lower];
+			tmp[tempArrayIndex] = array[lower];
 			lower ++;
 			tempArrayIndex ++;
 		}
 		while(upper <= end) {
-			tempArray[tempArrayIndex] = array[upper];
+			tmp[tempArrayIndex] = array[upper];
 			upper ++;
 			tempArrayIndex ++;
 		}
-		for(int i = 0; i < tempArray.length; i++) {
-			array[start + i] = tempArray[i];
+		for(int i = 0; i < tmp.length; i++) {
+			array[start + i] = tmp[i];
 		}
 	}
 	

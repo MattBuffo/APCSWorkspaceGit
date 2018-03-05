@@ -4,7 +4,7 @@ public class testClient {
 	public static void main(String[] args) {
 		int[] array = {2,-3,1,4};
 		
-		int[] arrayTemp = sort.mergeSort(array);
+		int[] arrayTemp = sort.insertionSort(array);
 		for(int i: arrayTemp) {
 			System.out.println(i);
 		}
