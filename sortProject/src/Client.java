@@ -1,15 +1,94 @@
 
 public class Client {
 	public static void main(String[] args) {
+		System.out.println("Timing of basic sorting tasks:");
 		basicTime();
+		System.out.println("Timing of sorts in special situations");
+		specialSets();
+		System.out.println("Timing of search algorithms (milliseconds");
+		searchTest();
 		
+	}
+	/**
+	 * Tests search algorithms with large data sets
+	 */
+	public static void searchTest() {
+		//linear tests
+		StopWatch1 timer;
+		int[] array = generateArray(5000000,1,5000000);
+		System.out.printf("%15s%10s%10s%10s%10s%10s%n","Size","Sort Type","Pre-sort","Value","Index","Time");
+		for(int i = 0; i< 5; i++) {
+			timer = new StopWatch1();
+			int temp = (int)(Math.random() * (5000000)) +1;
+			System.out.printf("%15d%10s%10s%10d",5000000,"Linear","Random",temp);
+			timer.start();
+			int result = Search.linearSearch(array, temp);
+			timer.stop();
+			if(result>0) {
+				System.out.printf("%10d",result);
+			}
+			else {
+				System.out.printf("%10s","Not Found");
+			}
+			System.out.printf("%10d%n", timer.getElapsedTime());
+			
+		}
+		Sort.mergeSort(array);
+		for(int i = 0; i< 5; i++) {
+			timer = new StopWatch1();
+			int temp = (int)(Math.random() * (5000000)) +1;
+			System.out.printf("%15d%10s%10s%10d",5000000,"Linear","Sorted",temp);
+			int result = Search.linearSearch(array, temp);
+			if(result>0) {
+				System.out.printf("%10d",result);
+			}
+			else {
+				System.out.printf("%10s","Not Found");
+			}
+			System.out.printf("%10d%n", timer.getElapsedTime());
+		}
+		for(int i =0; i< 5; i++) {
+			timer = new StopWatch1();
+			int temp = (int)(Math.random() * (5000000)) +1;
+			System.out.printf("%15d%10s%10s%10d",5000000,"Binary","Sorted",temp);
+			int result = Search.binarySearch(array, temp);
+			if(result>0) {
+				System.out.printf("%10d",result);
+			}
+			else {
+				System.out.printf("%10s","Not Found");
+			}
+			System.out.printf("%10d%n", timer.getElapsedTime());
+		}
 	}
 	/**
 	 * Tests algorithms with special sets of data for all algos except bubble
 	 */
 	public static void specialSets() {
-		System.out.printf("%10s%15s%15s%10s%10s%10s%10s%n","Size","Range","Pre-Sort Type","Insertion","Selectuon","Quick","Merge");
-		
+		System.out.printf("%12s%15s%15s%10s%10s%10s%10s%n","Size","Range","Pre-Sort Type","Insertion","Selectuon","Quick","Merge");
+		int[] array;
+		//200K
+		System.out.printf("%12d%15s%15s",200000,"1-200k","N/A");
+		array = generateArray(200000, 1, 200000);
+		fourSorts(array);
+		System.out.println();
+		//Sorted array
+		System.out.printf("%12d%15s%15s",200000,"1-200k","Sorted");
+		fourSorts(array);
+		System.out.println();
+		//Reverse Sorted
+		System.out.printf("%12d%15s%15s",200000,"1-200k","Reverse Sorted");
+		int[] temp = new int[array.length];
+		for(int i = 0; i < array.length; i++) {
+			temp[i] = array[array.length -1 -i];
+		}
+		fourSorts(temp);
+		System.out.println();
+		//Range 1-20
+		System.out.printf("%12d%15s%15s",200000,"1-20","N/A");
+		array = generateArray(200000, 1, 20);
+		fourSorts(array);
+		System.out.println();
 	}
 	/**
 	 * Prints the time it takes to sort datasets of varying sizes according to varying search methods
@@ -52,7 +131,7 @@ public class Client {
 		Sort.quickSort(temp);
 		timer.stop();
 		System.out.printf("%10d",timer.getElapsedTime());
-		System.out.println();
+		
 		
 		//Performs merge sort
 		timer = new StopWatch1();
@@ -61,6 +140,7 @@ public class Client {
 		Sort.mergeSort(temp);
 		timer.stop();
 		System.out.printf("%10d",timer.getElapsedTime());
+		System.out.println();
 		//5M
 		array = generateArray(5000000, 0, 5000000);
 		System.out.printf("%12d%10s%10s%10s",5000000,"N/A", "N/A", "N/A");
