@@ -74,6 +74,11 @@ public class Deck {
 	 */
 	public Card deal() {
 		
+		if(size > 0) {
+			size --;
+			return cards.remove(size);
+		}
+		return null;
 	}
 
 	/**
