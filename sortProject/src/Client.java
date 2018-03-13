@@ -159,6 +159,7 @@ public class Client {
 		Sort.mergeSort(temp);
 		timer.stop();
 		System.out.printf("%10d",timer.getElapsedTime());
+		System.out.println();
 	}
 	/**
 	 * Performs a test of core sort and search functionalities
