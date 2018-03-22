@@ -1,0 +1,33 @@
+Timing of basic sorting tasks:
+        Size    Bubble Insertion Selection     Quick     Merge
+        1000         8         3         4         0         1
+        5000        31         7        33         0         1
+       10000       109        28       135         0         2
+       50000      3409       685      3382         4         9
+      100000       N/A      2758     13662         9        16
+      500000       N/A     68455    344406        51        91
+     1000000       N/A       N/A       N/A       103       160
+     5000000       N/A       N/A       N/A       566       945
+Timing of sorts in special situations
+        Size          Range  Pre-Sort Type Insertion Selectuon     Quick     Merge
+      200000         1-200k            N/A     10940     54792        18        31
+      200000         1-200k         Sorted     10969     54833        18        28
+      200000         1-200k Reverse Sorted     10951     54957        18        27
+      200000           1-20            N/A     10523      9554         9        20
+Timing of search algorithms (milliseconds
+           Size Sort Type  Pre-sort     Value     Index      Time
+        5000000    Linear    Random   4804882   4478643         5
+        5000000    Linear    Random   3186818    809361         2
+        5000000    Linear    Random   1871534 Not Found         2
+        5000000    Linear    Random   3609032 Not Found         1
+        5000000    Linear    Random   1638415   2946711         3
+        5000000    Linear    Sorted   4251065   4251377         0
+        5000000    Linear    Sorted   2483778 Not Found         0
+        5000000    Linear    Sorted   1510220   1510942         0
+        5000000    Linear    Sorted   4706192   4706729         0
+        5000000    Linear    Sorted   4150632 Not Found         0
+        5000000    Binary    Sorted    872568    873527         0
+        5000000    Binary    Sorted   1564121   1564844         0
+        5000000    Binary    Sorted   2005744   2005238         0
+        5000000    Binary    Sorted   4300105 Not Found         0
+        5000000    Binary    Sorted   4386338   4387258         0
