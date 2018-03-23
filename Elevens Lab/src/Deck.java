@@ -37,6 +37,7 @@ public class Deck {
 				}
 			}
 		}
+		shuffle();
 	}
 
 
@@ -69,7 +70,6 @@ public class Deck {
 			Card temp = cards.get(random);
 			cards.set(random, cards.get(i));
 			cards.set(i, temp);
-			
 		}
 	}
 
