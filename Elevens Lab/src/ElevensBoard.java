@@ -55,7 +55,14 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		
+		if(selectedCards.size() < 4) {
+			if(selectedCards.size() < 3) {
+				return containsPairSum11(selectedCards);			
+				
+			}
+			return containsJQK(selectedCards);
+		}
+		return false;
 	}
 
 	/**
@@ -68,7 +75,22 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		for(int i = 0; i < super.size(); i ++) {
+			for(int j = i +1; j < super.size(); j ++) {
+				List<Integer> indexs = new ArrayList<>();
+				indexs.add(i);
+				indexs.add(j);
+				if(containsPairSum11(indexs)) {
+					return true;
+				}
+				for(int k = j+1; k< super.size(); k++) {
+					indexs.add(k);
+					if(containsJQK(indexs)) return true;
+				}
+			}
+			
+		}
+		return false;
 	}
 
 	/**
